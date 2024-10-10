@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,16 +20,25 @@
                 <button id="info-btn" class="info-btn">Mais informações</button>
             </div>
         </div>
-        <h2 class="popular-on-netflix2">Popular na Netflix</h2>
-        <div class="carousel-container">
+        
+        <!-- Título "Popular na Netflix" que será visível na tela inicial -->
+        <h2 class="popular-title">Popular na Netflix</h2>
+
+        <div class="carousel-container" id="carousel-container">
             <div id="carousel-cards" class="cards"></div>
         </div>
+
+        <!-- Seção de detalhes do filme, inicialmente oculta -->
         <div id="movie-details" class="movie-details hidden">
-          <button id="back-btn" class="back-btn">Voltar</button>
-          <img id="movie-details-image" class="details-image" alt="Detalhes do Filme">
-          <h1 id="movie-details-title" class="details-title"></h1>
-          <p id="movie-details-description" class="details-description"></p>
-      </div>
+            <button id="back-btn" class="back-btn">Voltar</button>
+            <div class="details-content">
+                <img id="movie-details-image" class="details-image" alt="Detalhes do Filme">
+                <div class="details-text">
+                    <h1 id="movie-details-title" class="details-title"></h1>
+                    <p id="movie-details-description" class="details-description"></p>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

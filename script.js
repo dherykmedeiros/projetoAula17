@@ -7,14 +7,11 @@ const options = {
     },
 };
 
-
-// Função para buscar filmes da API
 async function fetchMovies() {
     try {
         const response = await fetch(url, options);
         const data = await response.json();
 
-        // Verificação do conteúdo retornado pela API
         console.log('Dados da API:', data);
 
         if (data && data.results && data.results.length > 0) {
@@ -27,39 +24,29 @@ async function fetchMovies() {
     }
 }
 
-// Função para exibir o filme de destaque e o carrossel
 function displayMovies(movies) {
     if (movies.length > 0) {
         const firstMovie = movies[0];
-        
-        // Verifique se existem dados disponíveis antes de tentar acessá-los
+
         if (firstMovie.backdrop_path) {
             document.getElementById('highlighted-movie-image').src = `https://image.tmdb.org/t/p/w1280${firstMovie.backdrop_path}`;
-        } else {
-            console.warn('Imagem de fundo indisponível para o filme em destaque.');
         }
 
         if (firstMovie.title) {
             document.getElementById('highlighted-movie-title').innerText = firstMovie.title;
-        } else {
-            console.warn('Título indisponível para o filme em destaque.');
         }
 
         if (firstMovie.overview) {
             document.getElementById('highlighted-movie-description').innerText = firstMovie.overview;
-        } else {
-            console.warn('Descrição indisponível para o filme em destaque.');
         }
 
         document.getElementById('info-btn').onclick = function () {
-            window.location.href = `informacoes-filme.html?id=${firstMovie.id}`;
+            showMovieDetails(firstMovie);
         };
 
-        // Limpeza do carrossel antes de adicionar os filmes
         const carouselCards = document.getElementById('carousel-cards');
         carouselCards.innerHTML = '';
-        
-        // Renderiza o restante dos filmes no carrossel
+
         for (let i = 1; i < movies.length; i++) {
             const movie = movies[i];
 
@@ -68,18 +55,16 @@ function displayMovies(movies) {
 
             const img = document.createElement('img');
             img.classList.add('card-img');
-            
+
             if (movie.poster_path) {
                 img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
                 img.alt = movie.title;
             } else {
                 img.alt = 'Imagem indisponível';
-                console.warn(`Pôster indisponível para o filme: ${movie.title}`);
             }
 
-            // Adiciona evento de clique para redirecionar à página de detalhes
             card.addEventListener('click', () => {
-                window.location.href = `informacoes-filme.html?id=${movie.id}`;
+                showMovieDetails(movie);
             });
 
             card.appendChild(img);
@@ -88,5 +73,28 @@ function displayMovies(movies) {
     }
 }
 
-// Chama a função ao carregar a página
+function showMovieDetails(movie) {
+    document.getElementById('movie-details').classList.remove('hidden');
+    document.getElementById('carousel-container').classList.add('hidden');
+    document.querySelector('.main-show-infos').classList.add('hidden');
+    document.querySelector('.main-show-bg').classList.add('hidden');
+
+    if (movie.backdrop_path) {
+        document.getElementById('movie-details-image').src = `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`;
+    }
+    document.getElementById('movie-details-title').innerText = movie.title;
+    document.getElementById('movie-details-description').innerText = movie.overview || 'Descrição não disponível.';
+
+    document.getElementById('back-btn').onclick = function () {
+        hideMovieDetails();
+    };
+}
+
+function hideMovieDetails() {
+    document.getElementById('movie-details').classList.add('hidden');
+    document.getElementById('carousel-container').classList.remove('hidden');
+    document.querySelector('.main-show-infos').classList.remove('hidden');
+    document.querySelector('.main-show-bg').classList.remove('hidden');
+}
+
 fetchMovies();
