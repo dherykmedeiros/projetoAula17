@@ -1,0 +1,155 @@
+/* Estilos gerais */
+.desktop,
+.desktop * {
+  box-sizing: border-box;
+}
+
+.desktop {
+  background: #ffffff;
+  height: 1440px;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-show-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.image-4 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+}
+
+/* Informações do carrossel */
+.carousel-container {
+  width: 100%;
+  overflow-x: auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 90px;
+  margin-top: 20px;
+  position: absolute;
+  top: 1162px;
+}
+
+.cards {
+  display: flex;
+  gap: 10px;
+}
+
+.card {
+  flex-shrink: 0;
+  width: 389px;
+  height: 219px;
+  position: relative;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.card-img:hover {
+  transform: scale(1.05);
+}
+
+/* Ocultando a barra de rolagem */
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Oculta a barra de rolagem no Chrome/Safari */
+}
+
+.carousel-container {
+  -ms-overflow-style: none; /* Oculta a barra de rolagem no IE/Edge */
+  scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+}
+
+/* Reset de margens e bordas */
+a,
+button,
+input,
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  background: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+menu, ol, ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.card .info-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Botão de informações no filme em destaque */
+.info-btn {
+  position: relative;
+  display: inline-block;
+  background: #e50914;
+  color: #fff;
+  font-family: "NetflixSans-Medium", sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 2;
+}
+
+.info-btn:hover {
+  background: #f40612;
+}
+
+/* Ajuste do Botão de Informações no Filme em Destaque */
+.info-btn {
+  position: relative;
+  display: inline-block;
+  background: #e50914;
+  color: #fff;
+  font-family: "NetflixSans-Medium", sans-serif;
+  font-size: 18px;
+  padding: 15px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 2;
+  margin-top: 20px; /* Ajuste para colocar o botão mais abaixo */
+}
+
+.info-btn:hover {
+  background: #f40612;
+}
+
+/* Ajuste da posição das informações no filme em destaque */
+.main-show-infos {
+  position: absolute;
+  bottom: 300px;
+  left: 90px;
+  color: #fff;
+  z-index: 2;
+}
+
